@@ -1,5 +1,5 @@
 <script>
-  import Footer from './lib/Footer.svelte'
+  // import Footer from './lib/Footer.svelte'
   import MainContent from './lib/MainContent.svelte'
 </script>
 
@@ -16,7 +16,9 @@
   />
 </svelte:head>
 
-<div class="font-space-mono min-h-screen flex flex-col">
+<div
+  class="font-space-mono min-h-screen flex flex-col bg-cstm-neutral-light-grayish-cyan-one"
+>
   <MainContent />
-  <Footer />
+  <!-- <Footer /> -->
 </div>
