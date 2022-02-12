@@ -17,7 +17,7 @@
 </svelte:head>
 
 <div
-  class="font-space-mono min-h-screen flex flex-col bg-cstm-neutral-light-grayish-cyan-one"
+  class="font-space-mono min-h-screen flex flex-col md:justify-center bg-cstm-neutral-light-grayish-cyan-one"
 >
   <MainContent />
   <!-- <Footer /> -->
