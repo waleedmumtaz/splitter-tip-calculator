@@ -61,7 +61,7 @@
       </div>
 
       <!-- number of people -->
-      <div class="mt-10 relative">
+      <div class="mt-10 flex flex-col gap-1 relative">
         <label
           for="people"
           class="text-base font-bold text-cstm-neutral-dark-grayish-cyan-one"
@@ -71,7 +71,7 @@
           type="number"
           id="people"
           value="5"
-          class="bg-cstm-neutral-light-grayish-cyan-two text-right font-bold text-cstm-neutral-dark-cyan rounded-md mt-1 py-2"
+          class="bg-cstm-neutral-light-grayish-cyan-two text-right font-bold text-cstm-neutral-dark-cyan rounded-md py-2"
         />
         <img
           src="/assets/icon-person.svg"
