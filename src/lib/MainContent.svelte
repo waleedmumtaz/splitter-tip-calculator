@@ -71,7 +71,7 @@
   }
 </script>
 
-<div>
+<main>
   <div
     class="flex flex-col items-center w-full md:px-5 md:max-w-4xl md:mx-auto"
   >
@@ -298,4 +298,4 @@
       </div>
     </div>
   </div>
-</div>
+</main>
