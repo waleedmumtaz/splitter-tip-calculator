@@ -1,4 +1,47 @@
 <script>
+  let bill, tipPercentage, numberOfPeople
+  let tipAmountPerPerson = 0.0
+  let totalAmountPerPerson = 0.0
+
+  const setTipPercentage = (event) => {
+    tipPercentage = Number(event.target.value)
+  }
+
+  const calculateTipAmountPerPerson = (bill, tipPercentage, numberOfPeople) => {
+    return Number(((bill * tipPercentage) / numberOfPeople).toFixed(2))
+  }
+
+  const calculateTotalAmountPerPerson = (
+    bill,
+    tipPercentage,
+    numberOfPeople
+  ) => {
+    return Number(((bill + bill * tipPercentage) / numberOfPeople).toFixed(2))
+  }
+
+  const resetValues = () => {
+    bill = null
+    tipPercentage = null
+    numberOfPeople = null
+  }
+
+  $: {
+    if (bill && tipPercentage && numberOfPeople) {
+      tipAmountPerPerson = calculateTipAmountPerPerson(
+        bill,
+        tipPercentage,
+        numberOfPeople
+      )
+      totalAmountPerPerson = calculateTotalAmountPerPerson(
+        bill,
+        tipPercentage,
+        numberOfPeople
+      )
+    } else {
+      tipAmountPerPerson = 0.0
+      totalAmountPerPerson = 0.0
+    }
+  }
 </script>
 
 <main>
@@ -20,8 +63,11 @@
             <input
               type="number"
               id="bill"
-              value="142.55"
-              class="bg-cstm-neutral-light-grayish-cyan-two text-right font-bold text-cstm-neutral-dark-cyan rounded-md p-2 focus:outline focus:outline-2 focus:outline-cstm-primary-strong-cyan"
+              bind:value={bill}
+              step="0.01"
+              min="0.01"
+              placeholder="0.00"
+              class="bg-cstm-neutral-light-grayish-cyan-two text-right font-bold text-cstm-neutral-dark-cyan rounded-md py-2 px-4 focus:outline focus:outline-2 focus:outline-cstm-primary-strong-cyan"
             />
             <img
               src="/assets/icon-dollar.svg"
@@ -37,24 +83,121 @@
             >
               Select Tip %
             </p>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <li
+                class="bg-cstm-neutral-dark-cyan text-white hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-cstm-neutral-dark-cyan rounded-md w-full relative"
+              >
+                <label
+                  for="five_percent"
+                  class="font-bold cursor-pointer absolute text-center w-full checked:bg-red-500"
+                  >5%</label
+                >
+                <input
+                  type="radio"
+                  id="five_percent"
+                  value="0.05"
+                  name="tip_percentage"
+                  class="invisible"
+                  checked={tipPercentage === '0.05'}
+                  on:change={setTipPercentage}
+                />
+              </li>
+              <li
+                class="bg-cstm-neutral-dark-cyan text-white hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-cstm-neutral-dark-cyan rounded-md w-full relative"
+              >
+                <label
+                  for="ten_percent"
+                  class="font-bold cursor-pointer absolute text-center w-full checked:bg-red-500"
+                  >10%</label
+                >
+                <input
+                  type="radio"
+                  id="ten_percent"
+                  value="0.10"
+                  name="tip_percentage"
+                  class="invisible"
+                  checked={tipPercentage === '0.10'}
+                  on:change={setTipPercentage}
+                />
+              </li>
+              <li
+                class="bg-cstm-neutral-dark-cyan text-white hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-cstm-neutral-dark-cyan rounded-md w-full relative"
+              >
+                <label
+                  for="fifteen_percent"
+                  class="font-bold cursor-pointer absolute text-center w-full checked:bg-red-500"
+                  >15%</label
+                >
+                <input
+                  type="radio"
+                  id="fifteen_percent"
+                  value="0.15"
+                  name="tip_percentage"
+                  class="invisible"
+                  checked={tipPercentage === '0.15'}
+                  on:change={setTipPercentage}
+                />
+              </li>
+              <li
+                class="bg-cstm-neutral-dark-cyan text-white hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-cstm-neutral-dark-cyan rounded-md w-full relative"
+              >
+                <label
+                  for="twenty_five_percent"
+                  class="font-bold cursor-pointer absolute text-center w-full checked:bg-red-500"
+                  >25%</label
+                >
+                <input
+                  type="radio"
+                  id="twenty_five_percent"
+                  value="0.25"
+                  name="tip_percentage"
+                  class="invisible"
+                  checked={tipPercentage === '0.25'}
+                  on:change={setTipPercentage}
+                />
+              </li>
+              <li
+                class="bg-cstm-neutral-dark-cyan text-white hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-cstm-neutral-dark-cyan rounded-md w-full relative"
+              >
+                <label
+                  for="fifty_percent"
+                  class="font-bold cursor-pointer absolute text-center w-full checked:bg-red-500"
+                  >50%</label
+                >
+                <input
+                  type="radio"
+                  id="fifty_percent"
+                  value="0.50"
+                  name="tip_percentage"
+                  class="invisible"
+                  checked={tipPercentage === '0.50'}
+                  on:change={setTipPercentage}
+                />
+              </li>
+            </ul>
+            <!-- <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
               <button
+                on:click={() => setTipPercentage(0.05)}
                 class="bg-cstm-neutral-dark-cyan text-white font-bold rounded-md py-1 hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-black"
                 >5%</button
               >
               <button
+                on:click={() => setTipPercentage(0.1)}
                 class="bg-cstm-neutral-dark-cyan text-white font-bold rounded-md py-1 hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-black"
                 >10%</button
               >
               <button
+                on:click={() => setTipPercentage(0.15)}
                 class="bg-cstm-neutral-dark-cyan text-white font-bold rounded-md py-1 hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-black"
                 >15%</button
               >
               <button
+                on:click={() => setTipPercentage(0.25)}
                 class="bg-cstm-neutral-dark-cyan text-white font-bold rounded-md py-1 hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-black"
                 >25%</button
               >
               <button
+                on:click={() => setTipPercentage(0.5)}
                 class="bg-cstm-neutral-dark-cyan text-white font-bold rounded-md py-1 hover:bg-cstm-neutral-light-grayish-cyan-one hover:text-black"
                 >50%</button
               >
@@ -62,7 +205,7 @@
                 class="bg-cstm-neutral-light-grayish-cyan-two rounded-md font-bold text-cstm-neutral-dark-grayish-cyan-one"
                 >Custom</button
               >
-            </div>
+            </div> -->
           </div>
 
           <!-- number of people -->
@@ -75,8 +218,10 @@
             <input
               type="number"
               id="people"
-              value="5"
-              class="bg-cstm-neutral-light-grayish-cyan-two text-right font-bold text-cstm-neutral-dark-cyan rounded-md p-2 focus:outline focus:outline-2 focus:outline-cstm-primary-strong-cyan"
+              bind:value={numberOfPeople}
+              min="1"
+              placeholder="0"
+              class="bg-cstm-neutral-light-grayish-cyan-two text-right font-bold text-cstm-neutral-dark-cyan rounded-md py-2 px-4 focus:outline focus:outline-2 focus:outline-cstm-primary-strong-cyan"
             />
             <img
               src="/assets/icon-person.svg"
@@ -101,7 +246,7 @@
                   >
                 </p>
                 <p class="text-cstm-primary-strong-cyan text-3xl md:text-5xl">
-                  $4.27
+                  ${tipAmountPerPerson.toFixed(2)}
                 </p>
               </div>
               <div class="flex justify-between items-center font-bold">
@@ -112,11 +257,12 @@
                   >
                 </p>
                 <p class="text-cstm-primary-strong-cyan text-3xl md:text-5xl">
-                  $32.79
+                  ${totalAmountPerPerson.toFixed(2)}
                 </p>
               </div>
             </div>
             <button
+              on:click|preventDefault={resetValues}
               class="bg-cstm-primary-strong-cyan hover:bg-cstm-neutral-light-grayish-cyan-one font-bold w-full rounded-md py-1 uppercase mt-8 md:mt-0"
               >Reset</button
             >
