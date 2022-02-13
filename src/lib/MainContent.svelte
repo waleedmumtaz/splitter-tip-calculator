@@ -76,7 +76,9 @@
     class="flex flex-col items-center w-full md:px-5 md:max-w-4xl md:mx-auto"
   >
     <img src="/assets/logo.svg" alt="logo" class="py-12 md:pt-0" />
-    <div class="bg-white px-8 pt-8 pb-24 md:p-8 rounded-t-3xl md:rounded-3xl">
+    <div
+      class="bg-white px-8 pt-8 pb-24 md:p-8 rounded-t-3xl md:rounded-3xl shadow-xl"
+    >
       <div class="md:grid md:grid-cols-2 md:items-center md:gap-8">
         <!-- grid 1 -->
         <div>
